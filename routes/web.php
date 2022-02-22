@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Auth::routes();
+
+Route::resource('activities', 'ActivityController');

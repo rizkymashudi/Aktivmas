@@ -18,6 +18,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     {{-- sidebar --}}
     @include('includes.sidebar')
 
