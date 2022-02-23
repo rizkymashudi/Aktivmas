@@ -13,7 +13,7 @@ class ActivityModel extends Model
 
     protected $table = 'activity';
     protected $fillable = [
-        'poster', 'activity_name', 'performer', 'audience_type', 'activity_detail', 'activity_date'
+        'poster', 'activity_name', 'performer', 'audience_type', 'activity_detail', 'activity_date', 'activity_time'
     ];
 
     protected $hidden = [];

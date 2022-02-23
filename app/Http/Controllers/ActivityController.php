@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ActivityModel;
+use App\Http\Requests\ActivityRequest;
+use App\Http\Requests\ActivityUpdateRequest;
+Use Alert;
+use Illuminate\Notifications\Action;
 
 class ActivityController extends Controller
 {
@@ -13,7 +18,11 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return view('pages.activity.index');
+        $jadwal = ActivityModel::all();
+        
+        return view('pages.activity.index')->with([
+            'jadwal' => $jadwal
+        ]);
     }
 
     /**
@@ -23,7 +32,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.activity.create');
     }
 
     /**
@@ -32,9 +41,17 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActivityRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['poster'] = $request->file('poster')->store('assets/poster', 'public');
+
+        // dd($data);
+        ActivityModel::create($data);
+        
+        Alert::toast('Data berhasil ditambahkan', 'success');
+        
+        return redirect()->route('activities.index');
     }
 
     /**
@@ -55,8 +72,12 @@ class ActivityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $kegiatan = ActivityModel::findorfail($id);
+
+        return view('pages.activity.edit')->with([
+            'kegiatan' => $kegiatan
+        ]);
     }
 
     /**
@@ -66,9 +87,22 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActivityUpdateRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        
+        if(!$request->hasFile('poster')):     
+            $kegiatan = ActivityModel::findorfail($id);
+            $kegiatan->update($data);
+        else:
+            $data['poster'] = $request->file('poster')->store('assets/poster', 'public');
+            $kegiatan = ActivityModel::findorfail($id);
+            $kegiatan->update($data); 
+        endif;
+
+        Alert::toast('Data berhasil diubah', 'success');
+        
+        return redirect()->route('activities.index');
     }
 
     /**
@@ -79,6 +113,11 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kegiatan = ActivityModel::findOrFail($id);
+        $kegiatan->delete();
+
+        Alert::toast('Data berhasil dihapus', 'success');
+        
+        return redirect()->route('activities.index');
     }
 }

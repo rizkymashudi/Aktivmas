@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityRequest extends FormRequest
+class ActivityUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,8 @@ class ActivityRequest extends FormRequest
             'activity_name' => 'required|max:255',
             'performer' => 'required|max:255',
             'audience_type' => 'required',
-            'poster' => 'max:1000',
             'activity_detail' => 'required',
             'activity_date' => 'required|date',
-            'activity_time' => 'required|date_format:H:i',
         ];
     }
 }
