@@ -62,7 +62,10 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = ActivityModel::findOrFail($id);
+        return view('pages.activity.detail')->with([
+            'detail' => $detail
+        ]);
     }
 
     /**

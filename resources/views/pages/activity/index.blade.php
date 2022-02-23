@@ -4,7 +4,7 @@
     <div class="activity">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body">
                         <div class="box-title d-sm-flex align-items-center justify-content-between">
                             <h4>Daftar jadwal kegiatan</h4>
@@ -23,7 +23,6 @@
                                             <th>Nama Kegiatan</th>
                                             <th>Pengisi acara</th>
                                             <th>Tipe audience</th>
-                                            <th>Detail kegiatan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -34,14 +33,13 @@
                                         @forelse ($jadwal as $kegiatan)
                                         <tr>
                                             <td>{{ $no }}</td>
-                                            <td>{{ $kegiatan->activity_date }}</td>
-                                            <td>{{ $kegiatan->activity_time }}</td>
+                                            <td>{{ date('j \\ F Y', strtotime($kegiatan->activity_date)) }}</td>
+                                            <td>{{ $kegiatan->activity_time }} WIB</td>
                                             <td>{{ $kegiatan->activity_name }}</td>
                                             <td>{{ $kegiatan->performer }}</td>
                                             <td>{{ $kegiatan->audience_type }}</td>
-                                            <td>{{ $kegiatan->activity_detail }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm">
+                                                <a href="{{ route('activities.show', $kegiatan->id) }}" class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="{{ route('activities.edit', $kegiatan->id) }}" class="btn btn-primary btn-sm">

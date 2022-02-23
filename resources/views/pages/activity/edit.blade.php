@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="card">
+    <div class="card shadow">
         <div class="card-header">
             <strong>Edit jadwal kegiatan {{ $kegiatan->activity_name }} </strong>
         </div>
