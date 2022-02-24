@@ -35,7 +35,7 @@
                                             <td>{{ $announce->title }}</td>
                                             <td>{!! $announce->detail_announcements !!}</td>
                                             <td>
-                                                <a href="#" data-toggle="modal" data-target="#showimage">
+                                                <a href="#" data-toggle="modal" data-target="#showimage{{ $announce->id }}">
                                                     <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px" class="img-thumbnail">
                                                 </a>
                                             </td>
@@ -63,7 +63,7 @@
                                     </tbody>
 
                                     <!-- Modal image-->
-                                    <div class="modal fade" id="showimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="showimage{{ $announce->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">

@@ -45,7 +45,7 @@
                                                 <a href="{{ route('activities.edit', $kegiatan->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
+                                                <a href="#" class="btn btn-danger btn-sm" data-pk="{{ $kegiatan->id }}" data-toggle="modal" data-target="#delete">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -69,7 +69,7 @@
                                           <div class="modal-content">
                                             <div class="modal-header">
                                                 <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                    <h5 class="modal-title">Hapus {{ $kegiatan->activity_name }}</h5>
+                                                    <h5 class="modal-title">Hapus jadwal kegiatan</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -77,6 +77,7 @@
                                             </div>
                                             <div class="modal-body">
                                               <p>Anda yakin ingin menghapus jadwal kegiatan ini?</p>
+                                              <input type="text" name="" id="" value="{{ $kegiatan->id }}">
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="{{ route('activities.destroy', $kegiatan->id) }}" method="post" class="d-inline">
