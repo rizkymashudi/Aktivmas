@@ -44,7 +44,7 @@
                                                 <a href="{{ route('announcements.edit', $announce->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $announce->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -62,58 +62,62 @@
                                         
                                     </tbody>
 
-                                    <!-- Modal image-->
-                                    <div class="modal fade" id="showimage{{ $announce->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
+                                    @foreach ($announcements as $announce)
+                                        <!-- Modal image-->
+                                        <div class="modal fade" id="showimage{{ $announce->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <div class="box-title d-sm-flex align-items-center justify-content-between">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Poster</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        {{-- Modal delete --}}
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="delete{{ $announce->id }}">
+                                            <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Poster</h5>
+                                                        <h5 class="modal-title">Hapus {{ $announce->title }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body text-center">
-                                                    <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px">
+                                                <div class="modal-body">
+                                                <p>Anda yakin ingin menghapus pengumuman?</p>
+                                                <input type="hidden" value="{{ $announce->title }}">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form action="{{ route('announcements.destroy', $announce->id) }}" method="post" class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i>
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    {{-- Modal delete --}}
-                                    <div class="modal fade" tabindex="-1" role="dialog" id="delete">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                                <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                    <h5 class="modal-title">Hapus {{ $announce->title }}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body">
-                                              <p>Anda yakin ingin menghapus pengumuman?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form action="{{ route('announcements.destroy', $announce->id) }}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i>
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                    
                                 </table>
                             </div>
                         </div>
