@@ -7,9 +7,9 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <div class="box-title d-sm-flex align-items-center justify-content-between">
-                            <h4>Pengumuman masjid</h4>
-                            <a href="{{ route('announcements.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                                <i class="fa fa-plus fa-sm text-white-50"></i> Tambah pengumuman
+                            <h4>Jadwal Khotbah</h4>
+                            <a href="{{ route('jumat.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                                <i class="fa fa-plus fa-sm text-white-50"></i> Tambah jadwal
                             </a>
                         </div>
                         <div class="card-body-- mt-4">
@@ -18,10 +18,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Judul pengumuman</th>
-                                            <th>Detail pengumuman</th>
-                                            <th>Poster</th>
-                                            <th>Dibuat</th>
+                                            <th>Photo</th>
+                                            <th>Nama Khatib</th>
+                                            <th>Tanggal</th>
+                                            <th>Khotbah dimulai</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -29,22 +29,22 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @forelse ($announcements as $announce)
+                                        @forelse ($khotbahJumat as $kj)
                                         <tr>
                                             <td>{{ $no }}</td>
-                                            <td>{{ $announce->title }}</td>
-                                            <td>{!! $announce->detail_announcements !!}</td>
                                             <td>
-                                                <a href="#" data-toggle="modal" data-target="#showimage{{ $announce->id }}">
-                                                    <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px" class="img-thumbnail">
+                                                <a href="#" data-toggle="modal" data-target="#showimage{{ $kj->id }}">
+                                                    <img src="{{ Storage::url($kj->photo) }}" alt="photo" style="width: 50px; height: 45px " class="img-fluid img-thumbnail rounded-circle">
                                                 </a>
                                             </td>
-                                            <td>{{ date('j \\ F Y', strtotime($announce->created_at)) }}</td>
+                                            <td>{{ $kj->name }}</td>
+                                            <td>{{ date('j \\ F Y', strtotime($kj->date)) }}</td>
+                                            <td>{{ $kj->time_khotbah }} WIB</td>
                                             <td>
-                                                <a href="{{ route('announcements.edit', $announce->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('jumat.edit', $kj->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $announce->id }}">
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $kj->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -62,21 +62,21 @@
                                         
                                     </tbody>
 
-                                    @foreach ($announcements as $announce)
+                                    @foreach ($khotbahJumat as $kj)
                                         <!-- Modal image-->
-                                        <div class="modal fade" id="showimage{{ $announce->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="showimage{{ $kj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Poster {{ $announce->title }}</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">{{ $kj->name }}</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px">
+                                                        <img src="{{ Storage::url($kj->photo) }}" alt="photo" style="width: 350px">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,23 +87,23 @@
 
 
                                         {{-- Modal delete --}}
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="delete{{ $announce->id }}">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="delete{{ $kj->id }}">
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                        <h5 class="modal-title">Hapus {{ $announce->title }}</h5>
+                                                        <h5 class="modal-title">Hapus {{ $kj->name }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div class="modal-body">
-                                                <p>Anda yakin ingin menghapus pengumuman?</p>
-                                                <input type="hidden" value="{{ $announce->title }}">
+                                                <p>Anda yakin ingin menghapus jadwal khotbah?</p>
+                                                <input type="hidden" value="{{ $kj->name }}">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('announcements.destroy', $announce->id) }}" method="post" class="d-inline">
+                                                    <form action="{{ route('jumat.destroy', $kj->id) }}" method="post" class="d-inline">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-danger btn-sm">

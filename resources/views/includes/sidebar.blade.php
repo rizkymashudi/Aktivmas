@@ -14,7 +14,7 @@
                     <a href="{{ route('announcements.index') }}"> <i class="menu-icon fa fa-plus"></i>Penguman Masjid</a>
                 </li>
                 <li class="">
-                    <a href="#"> <i class="menu-icon fa fa-plus"></i>Khotbah jumat</a>
+                    <a href="{{ route('jumat.index') }}"> <i class="menu-icon fa fa-plus"></i>Khotbah jumat</a>
                 </li>
 
                 <li class="menu-title">Kas masjid</li><!-- /.menu-title -->
