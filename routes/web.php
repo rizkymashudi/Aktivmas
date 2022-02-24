@@ -19,3 +19,4 @@ Route::get('/', 'DashboardController@index')->name('dashboard');
 Auth::routes();
 
 Route::resource('activities', 'ActivityController');
+Route::resource('announcements', 'AnnouncementsController');

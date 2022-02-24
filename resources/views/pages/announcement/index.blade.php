@@ -7,9 +7,9 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <div class="box-title d-sm-flex align-items-center justify-content-between">
-                            <h4>Daftar jadwal kegiatan</h4>
-                            <a href="{{ route('activities.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                                <i class="fa fa-plus fa-sm text-white-50"></i> Tambah jadwal
+                            <h4>Pengumuman masjid</h4>
+                            <a href="{{ route('announcements.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                                <i class="fa fa-plus fa-sm text-white-50"></i> Tambah pengumuman
                             </a>
                         </div>
                         <div class="card-body-- mt-4">
@@ -18,11 +18,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Tanggal</th>
-                                            <th>Pukul</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Pengisi acara</th>
-                                            <th>Tipe audience</th>
+                                            <th>Judul pengumuman</th>
+                                            <th>Detail pengumuman</th>
+                                            <th>Poster</th>
+                                            <th>Dibuat</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -30,19 +29,19 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @forelse ($jadwal as $kegiatan)
+                                        @forelse ($announcements as $announce)
                                         <tr>
                                             <td>{{ $no }}</td>
-                                            <td>{{ date('j \\ F Y', strtotime($kegiatan->activity_date)) }}</td>
-                                            <td>{{ $kegiatan->activity_time }} WIB</td>
-                                            <td>{{ $kegiatan->activity_name }}</td>
-                                            <td>{{ $kegiatan->performer }}</td>
-                                            <td>{{ $kegiatan->audience_type }}</td>
+                                            <td>{{ $announce->title }}</td>
+                                            <td>{!! $announce->detail_announcements !!}</td>
                                             <td>
-                                                <a href="{{ route('activities.show', $kegiatan->id) }}" class="btn btn-info btn-sm">
-                                                    <i class="fa fa-eye"></i>
+                                                <a href="#" data-toggle="modal" data-target="#showimage">
+                                                    <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px" class="img-thumbnail">
                                                 </a>
-                                                <a href="{{ route('activities.edit', $kegiatan->id) }}" class="btn btn-primary btn-sm">
+                                            </td>
+                                            <td>{{ date('j \\ F Y', strtotime($announce->created_at)) }}</td>
+                                            <td>
+                                                <a href="{{ route('announcements.edit', $announce->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
@@ -55,7 +54,7 @@
                                         @endphp
                                         @empty
                                             <tr>
-                                                <td class="text-center p-5" colspan="8">
+                                                <td class="text-center p-5" colspan="6">
                                                     Data tidak tersedia
                                                 </td>
                                             </tr>
@@ -63,23 +62,46 @@
                                         
                                     </tbody>
 
+                                    <!-- Modal image-->
+                                    <div class="modal fade" id="showimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="box-title d-sm-flex align-items-center justify-content-between">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Poster</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     {{-- Modal delete --}}
                                     <div class="modal fade" tabindex="-1" role="dialog" id="delete">
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header">
                                                 <div class="box-title d-sm-flex align-items-center justify-content-between">
-                                                    <h5 class="modal-title">Hapus {{ $kegiatan->activity_name }}</h5>
+                                                    <h5 class="modal-title">Hapus {{ $announce->title }}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="modal-body">
-                                              <p>Anda yakin ingin menghapus jadwal kegiatan ini?</p>
+                                              <p>Anda yakin ingin menghapus pengumuman?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('activities.destroy', $kegiatan->id) }}" method="post" class="d-inline">
+                                                <form action="{{ route('announcements.destroy', $announce->id) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-danger btn-sm">
@@ -100,4 +122,6 @@
             </div>
         </div>
     </div>
+
+    
 @endsection
