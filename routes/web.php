@@ -21,3 +21,4 @@ Auth::routes();
 Route::resource('activities', 'ActivityController');
 Route::resource('announcements', 'AnnouncementsController');
 Route::resource('jumat', 'JumatController');
+Route::resource('report', 'FinancialReportController');
