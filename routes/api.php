@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('kas', 'Api\KasReportController@all');
+Route::get('kegiatan', 'Api\ActivityController@GetAll');
+Route::get('pengumuman', 'Api\AnnouncementsController@GetAll');
+Route::get('khotbah', 'Api\JumatController@GetAll');

@@ -26,6 +26,7 @@ class DashboardController extends Controller
         $totalDebet = FinancialReportModel::sum('debet');
         $totalKredit = FinancialReportModel::sum('credit');
         $reports     = FinancialReportModel::all();
+        $activities = ActivityModel::all();
 
         return view('pages.dashboard')->with([
             'saldoAkhir' => $saldoAkhir,
