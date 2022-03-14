@@ -15,7 +15,7 @@ class CreateJumatTable extends Migration
     {
         Schema::create('jumat', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('name');
             $table->date('date');
             $table->timestamps();

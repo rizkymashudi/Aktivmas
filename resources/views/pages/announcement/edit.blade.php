@@ -28,7 +28,7 @@
                         <label for="text-input" class=" form-control-label">Detail pengumuman</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <textarea class="form-control ckeditor @error('detail_announcements') is-invalid @enderror" name="detail_announcements" value="{{ old('detail_announcements') ? old('detail_announcements') : $announcement->detail_announcements }}" cols="120" rows="10"></textarea>
+                        <textarea class="form-control ckeditor @error('detail_announcements') is-invalid @enderror" name="detail_announcements" value="{{ old('detail_announcements') ? old('detail_announcements') : $announcement->detail_announcements }}" cols="120" rows="10">{!! $announcement->detail_announcements !!}</textarea>
                         @error('detail_announcements') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>

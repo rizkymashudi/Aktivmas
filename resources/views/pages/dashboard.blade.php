@@ -14,7 +14,7 @@
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
-                                <div class="stat-text">Rp. <span class="count">{{ $saldoAkhir->balance }}</span></div>
+                                <div class="stat-text">Rp. <span class="count">{{ is_null($saldoAkhir) ? 0 : $saldoAkhir->balance }}</span></div>
                                 <div class="stat-heading">Saldo kas akhir</div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-
+   
         <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -89,6 +89,7 @@
                                         $no = 1;
                                     @endphp
                                     @forelse ($reports as $report)
+                                    
                                     <tr>
                                         <td>{{ $no }}</td>
                                         <td>{{ date('l, j \\ F Y', strtotime($report->date)) }}</td>
@@ -107,7 +108,6 @@
                                             </td>
                                         </tr>
                                     @endforelse
-                                    
                                 </tbody>
 
                                 
@@ -146,7 +146,7 @@
 
         // Pie chart flotPie1
         var piedata = [
-            { label: "Saldo", data: [[1, {{ $saldoAkhir->balance }} ]], color: '#5c6bc0'},
+            { label: "Saldo", data: [[1, {{ is_null($saldoAkhir) ? 0 : $saldoAkhir->balance }} ]], color: '#5c6bc0'},
             { label: "Total debet", data: [[1, {{ $totalDebet }} ]], color: '#ef5350'},
             { label: "Total kredit", data: [[1, {{ $totalKredit }} ]], color: '#66bb6a'}
         ];

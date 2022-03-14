@@ -1,0 +1,96 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: 'Assistant', sans-serif;
+  color: black;
+}
+
+.navbar-brand img {
+  max-height: 47px;
+}
+
+.navbar-light {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-light .active-link {
+  position: relative;
+  color: #00A184;
+}
+
+.navbar-light .nav__menu .nav-link {
+  color: #000000;
+}
+
+.navbar-light .nav__menu.active-link {
+  font-weight: bold;
+  color: #00A184 !important;
+}
+
+.btn-donate {
+  background-color: #00A184;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 95px;
+}
+
+.btn-donate:hover {
+  background-color: #39ceb3;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+.section-footer {
+  background-color: #0F0F41;
+  color: #ffffff;
+}
+
+.section-footer .footer {
+  width: 430px;
+  height: 160px;
+}
+
+@media screen and (max-width: 375px) {
+  .section-footer .footer {
+    width: 290px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .section-footer .footer {
+    width: 330px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .section-footer .footer {
+    width: 360px;
+    height: 140px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 991) {
+  .section-footer .footer {
+    width: 1030px;
+    height: 120px;
+    margin-bottom: 2rem;
+  }
+}
+
+.main__section h1, .main__section h3 {
+  font-weight: bold;
+}
+
+.main__section p, .main__section li {
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=donate.css.map */

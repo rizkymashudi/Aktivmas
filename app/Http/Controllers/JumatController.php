@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\JumatRequest;
 use App\Models\JumatModel;
 use Alert;
+use Storage;
 
 class JumatController extends Controller
 {
@@ -42,9 +43,14 @@ class JumatController extends Controller
     public function store(JumatRequest $request)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store('assets/jumat', 'public');
-
-        JumatModel::create($data);
+        
+        if(!$request->hasFile('photo')):
+            JumatModel::create($data);
+        else:
+            $data['photo'] = $request->file('photo')->store('assets/jumat', 'public');
+            JumatModel::create($data);
+        endif;
+        
         Alert::toast('Data berhasil ditambahkan', 'success');
 
         return redirect()->route('jumat.index');

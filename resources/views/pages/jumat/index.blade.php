@@ -34,12 +34,12 @@
                                             <td>{{ $no }}</td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#showimage{{ $kj->id }}">
-                                                    <img src="{{ Storage::url($kj->photo) }}" alt="photo" style="width: 50px; height: 45px " class="img-fluid img-thumbnail rounded-circle">
+                                                    <img src="{{ $kj->photo ? Storage::url($kj->photo) : '/Front-end/images/profile.png' }}" alt="photo" style="width: 50px; height: 45px " class="img-fluid img-thumbnail rounded-circle">
                                                 </a>
                                             </td>
                                             <td>{{ $kj->name }}</td>
-                                            <td>{{ date('j \\ F Y', strtotime($kj->date)) }}</td>
-                                            <td>{{ $kj->time_khotbah }} WIB</td>
+                                            <td>{{ date('l, j \\ F Y', strtotime($kj->date)) }}</td>
+                                            <td>{{ date('H:i', strtotime($kj->time_khotbah)) }} WIB</td>
                                             <td>
                                                 <a href="{{ route('jumat.edit', $kj->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
@@ -76,7 +76,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <img src="{{ Storage::url($kj->photo) }}" alt="photo" style="width: 350px">
+                                                        <img src="{{ $kj->photo ? Storage::url($kj->photo) : '/Front-end/images/profile.png' }}" alt="photo" style="width: 350px">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

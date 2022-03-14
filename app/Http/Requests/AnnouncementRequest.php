@@ -26,7 +26,7 @@ class AnnouncementRequest extends FormRequest
         return [
             'title' => 'required',
             'detail_announcements' => 'required',
-            'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'poster' => 'max:1048'
         ];
     }
 }

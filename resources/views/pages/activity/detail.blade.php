@@ -17,7 +17,7 @@
                     <tr>
                         <th>Poster</th>
                         <td>
-                            <img src="{{ Storage::url($detail->poster) }}" alt="poster" style="width: 350px" class="img-thumbnail">
+                            <img src="{{ $detail->poster ? Storage::url($detail->poster) : 'https://via.placeholder.com/1000x900' }}" alt="poster" style="width: 350px" class="img-thumbnail">
                         </td>
                     </tr>
                     <tr>
@@ -26,11 +26,11 @@
                     </tr>
                     <tr>
                         <th>Tanggal Kegiatan</th>
-                        <td>{{ date('j \\ F Y', strtotime($detail->activity_date)) }}</td>
+                        <td>{{ date('l, j \\ F Y', strtotime($detail->activity_date)) }}</td>
                     </tr>
                     <tr>
                         <th>Waktu kegiatan</th>
-                        <td>{{ $detail->activity_time }} WIB</td>
+                        <td>{{ date('H:i', strtotime($detail->activity_time)) }} WIB</td>
                     </tr>
                     <tr>
                         <th>Jamaah</th>

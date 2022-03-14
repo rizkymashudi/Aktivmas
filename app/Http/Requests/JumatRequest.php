@@ -24,10 +24,9 @@ class JumatRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif.svg|max:1048',
             'name'  => 'required',
             'date'  => 'required|date',
-            'time'  => 'required'
+            'time_khotbah'  => 'required'
         ];
     }
 }

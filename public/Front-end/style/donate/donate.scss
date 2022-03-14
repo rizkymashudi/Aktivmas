@@ -1,0 +1,106 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #ffffff;
+    font-family: 'Assistant', sans-serif;
+    color: black;
+}
+
+.navbar-brand {
+
+    img{
+        max-height: 47px;
+    }
+}
+
+.navbar-light{
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .active-link{
+        position: relative;
+        color: #00A184;
+    }
+    .nav__menu{
+        .nav-link{
+            color: #000000;
+        }
+
+        &.active-link {
+            font-weight: bold;
+            color: #00A184 !important;
+        }
+    }
+}
+
+.btn-donate{
+    background-color: #00A184;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 95px;
+
+    &:hover{
+        background-color: #39ceb3;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+
+}
+
+.section-footer{
+    background-color: #0F0F41;
+    color: #ffffff;
+
+    .footer{
+        width: 430px; 
+        height: 160px;
+    }
+
+    @media screen and (max-width: 375px){
+        .footer{
+            width: 290px;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+    }
+
+    @media screen and (max-width: 411px){
+        .footer{
+            width: 330px;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+    }
+
+    @media screen and (max-width: 576px){
+        .footer{
+            width: 360px;
+            height: 140px;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    @media screen and (max-width: 991){
+        .footer{
+            width: 1030px;
+            height: 120px;
+            margin-bottom: 2rem;
+        }
+
+    }
+        
+}
+
+// DONATE PAGE
+.main__section{
+    h1, h3{
+        font-weight: bold;
+    }
+
+    p, li{
+        font-size: 1.2rem;
+    }
+}

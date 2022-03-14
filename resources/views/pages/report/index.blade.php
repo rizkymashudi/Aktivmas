@@ -27,26 +27,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         @php
                                             $no = 1;
                                         @endphp
                                         @forelse ($reports as $report)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ date('l, j \\ F Y', strtotime($report->date)) }}</td>
-                                            <td>{!! $report->description !!}</td>
-                                            <td>Rp. {{ number_format($report->debet) }}</td>
-                                            <td>Rp. {{ number_format($report->credit) }}</td>
-                                            <td>Rp. {{ number_format($report->balance) }}</td>
-                                            <td>
-                                                <a href="{{ route('report.edit', $report->id) }}" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @php
-                                            $no++;
-                                        @endphp
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>{{ date('l, j \\ F Y', strtotime($report->date)) }}</td>
+                                                <td>{!! $report->description !!}</td>
+                                                <td>Rp. {{ number_format($report->debet) }}</td>
+                                                <td>Rp. {{ number_format($report->credit) }}</td>
+                                                <td>Rp. {{ number_format($report->balance) }}</td>
+                                                <td>
+                                                    <a href="{{ route('report.edit', $report->id) }}" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $no++;
+                                            @endphp
                                         @empty
                                             <tr>
                                                 <td class="text-center p-5" colspan="7">

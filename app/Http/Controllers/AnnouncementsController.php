@@ -40,9 +40,14 @@ class AnnouncementsController extends Controller
     public function store(AnnouncementRequest $request)
     {
         $data = $request->all();
-        $data['poster'] = $request->file('poster')->store('assets/announcements', 'public');
+        
+        if(!$request->hasFile('poster')):
+            AnnounceModel::create($data);
+        else:
+            $data['poster'] = $request->file('poster')->store('assets/announcements', 'public');
+            AnnounceModel::create($data);
+        endif;
 
-        AnnounceModel::create($data);
         Alert::toast('Data berhasil ditambahkan', 'success');
 
         return redirect()->route('announcements.index');

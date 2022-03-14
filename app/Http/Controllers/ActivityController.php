@@ -44,10 +44,13 @@ class ActivityController extends Controller
     public function store(ActivityRequest $request)
     {
         $data = $request->all();
-        $data['poster'] = $request->file('poster')->store('assets/poster', 'public');
 
-        // dd($data);
-        ActivityModel::create($data);
+        if(!$request->hasFile('poster')):
+            ActivityModel::create($data);
+        else:
+            $data['poster'] = $request->file('poster')->store('assets/poster', 'public');
+            ActivityModel::create($data);
+        endif;
         
         Alert::toast('Data berhasil ditambahkan', 'success');
         

@@ -15,11 +15,11 @@ class CreateActivityTable extends Migration
     {
         Schema::create('activity', function (Blueprint $table) {
             $table->id();
-            $table->string('poster');
+            $table->string('poster')->nullable();
             $table->string('activity_name');
             $table->string('performer');
             $table->string('audience_type');
-            $table->string('activity_detail');
+            $table->longtext('activity_detail');
             $table->date('activity_date');
             $table->softDeletes();
             $table->timestamps();

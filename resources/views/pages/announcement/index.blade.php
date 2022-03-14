@@ -36,10 +36,10 @@
                                             <td>{!! $announce->detail_announcements !!}</td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#showimage{{ $announce->id }}">
-                                                    <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px" class="img-thumbnail">
+                                                    <img src="{{ $announce->poster ? Storage::url($announce->poster) : 'https://via.placeholder.com/1280x720' }}" alt="poster" style="width: 350px" class="img-thumbnail">
                                                 </a>
                                             </td>
-                                            <td>{{ date('j \\ F Y', strtotime($announce->created_at)) }}</td>
+                                            <td>{{ date('l, j \\ F Y', strtotime($announce->created_at)) }}</td>
                                             <td>
                                                 <a href="{{ route('announcements.edit', $announce->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
@@ -76,7 +76,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <img src="{{ Storage::url($announce->poster) }}" alt="poster" style="width: 350px">
+                                                        <img src="{{ $announce->poster ? Storage::url($announce->poster) : 'https://via.placeholder.com/1280x720' }}" alt="poster" style="width: 350px">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
