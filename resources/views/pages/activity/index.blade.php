@@ -33,8 +33,8 @@
                                         @forelse ($jadwal as $kegiatan)
                                         <tr>
                                             <td>{{ $no }}</td>
-                                            <td>{{ date('j \\ F Y', strtotime($kegiatan->activity_date)) }}</td>
-                                            <td>{{ $kegiatan->activity_time }} WIB</td>
+                                            <td>{{ date('l, j \\ F Y', strtotime($kegiatan->activity_date)) }}</td>
+                                            <td>{{ date('H:i', strtotime($kegiatan->activity_time)) }} WIB</td>
                                             <td>{{ $kegiatan->activity_name }}</td>
                                             <td>{{ $kegiatan->performer }}</td>
                                             <td>{{ $kegiatan->audience_type }}</td>

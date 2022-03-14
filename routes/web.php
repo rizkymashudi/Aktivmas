@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/', [LandingController::class, 'index'])->name('landingpage');
+Route::get('donate', [DonateController::class, 'index'])->name('donate');
+Route::get('announcement', [PengumumanController::class, 'index'])->name('announcement');
+Route::get('activities-detail', [DetailActivityController::class, 'index'])->name('activities-detail');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 Auth::routes();
 
-Route::resource('activities', 'ActivityController');
-Route::resource('announcements', 'AnnouncementsController');
-Route::resource('jumat', 'JumatController');
-Route::resource('report', 'FinancialReportController');
+Route::resource('activities', ActivityController::class);
+Route::resource('announcements', AnnouncementsController::class);
+Route::resource('jumat', JumatController::class);
+Route::resource('report', FinancialReportController::class);

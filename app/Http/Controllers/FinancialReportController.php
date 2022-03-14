@@ -148,7 +148,12 @@ class FinancialReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $kas = FinancialReportModel::findOrFail($id);
+        $kas->update($data);
+        Alert::toast('Data berhasil diubah', 'success');
+        
+        return redirect()->route('report.index');
     }
 
     /**

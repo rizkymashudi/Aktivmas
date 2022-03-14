@@ -15,8 +15,7 @@
                     <div class="col-12 col-md-9">
                         <input type="file" 
                                 id="file-input" 
-                                name="photo" 
-                                value="{{ old('photo') }}"
+                                name="photo"
                                 class="form-control @error('photo') is-invalid @enderror">
                         @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         <p class="text-danger mt-2">*ukuran gambar tidak bisa lebih dari 1 mb</p>
@@ -64,7 +63,6 @@
                         @error('time_khotbah') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
                         Simpan
