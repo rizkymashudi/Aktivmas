@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-body-- mt-4">
                             <div class="table-stats order-table ov-h">
-                                <table class="table">
+                                <table class="table table-bordered stripe order-column hover" id="table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -126,6 +126,12 @@
             </div>
         </div>
     </div>
-
-    
 @endsection
+
+@push('after-script')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        } );
+    </script>
+@endpush

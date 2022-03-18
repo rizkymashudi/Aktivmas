@@ -7,6 +7,7 @@ use App\Models\FinancialReportModel;
 use App\Requests\FinancialReportRequest;
 use DB;
 use Alert;
+use PDF;
 
 class FinancialReportController extends Controller
 {
@@ -165,5 +166,16 @@ class FinancialReportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function exportPDF(){
+        $data = FinancialReportModel::select('*')->whereMonth('date', now()->month)->get();
+        $lastBalance = FinancialReportModel::select('balance')->whereMonth('date', now()->month)->latest()->first();
+    
+        $pdf = \PDF::loadview('pages.report.kasreport', ['data' => $data, 'latestBalance' => $lastBalance]);
+        $pdfname = now()->toDateString();
+
+        return $pdf->download("Laporan-Kas-$pdfname.pdf");
     }
 }

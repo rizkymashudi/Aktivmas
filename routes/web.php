@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\DonateController;
+use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\DetailActivityController;
+use App\Http\Controllers\FinancialReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +23,13 @@ Route::get('/', [LandingController::class, 'index'])->name('landingpage');
 Route::get('donate', [DonateController::class, 'index'])->name('donate');
 Route::get('announcement', [PengumumanController::class, 'index'])->name('announcement');
 Route::get('activities-detail', [DetailActivityController::class, 'index'])->name('activities-detail');
-
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
 Auth::routes();
+Route::resource('activities', 'ActivityController');
+Route::resource('announcements', 'AnnouncementsController');
+Route::resource('jumat', 'JumatController');
+Route::resource('report', 'FinancialReportController');
 
-Route::resource('activities', ActivityController::class);
-Route::resource('announcements', AnnouncementsController::class);
-Route::resource('jumat', JumatController::class);
-Route::resource('report', FinancialReportController::class);
+Route::get('exportPDF', [FinancialReportController::class, 'exportPDF'])->name('export-PDF');

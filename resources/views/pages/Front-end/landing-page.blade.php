@@ -9,10 +9,10 @@
             <div class="row row__hero justify-content-center align-items-end">
                 <div class="col-sm header__text pt-5 px-5 wow animate__animated animate__zoomIn" data-wow-delay="0.1s">
                     <h1> 
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci dolorum eius
+                       Website Resmi Masji Raya Batam
                     </h1>
                     <p class="my-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Jl, Engku Putri, Teluk Tering, Kec Batam Kota, Kota Batam, Kepulauan riau 29444
                     </p>
                     <a href="#services" class="btn btn-services px-4 mt-5">
                         Layanan
@@ -37,7 +37,6 @@
                     <h1>Waktu Shalat Masjid Agung <br> Kota Batam</h1>
                 </div>
                 <div class="col col-sm pt-5">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
             </div>
             
@@ -402,7 +401,7 @@
                                         <div class="card shadow"  style="border-radius: 10px;">
                                             <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
                                             <div class="card-body">
-                                                <h4 class="card-title">Special title treatment</h4>
+                                                <h4 class="card-title">Tempat Shalat</h4>
                                                 <p class="card-text">
                                                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque tenetur maiores quas placeat,
                                                     </p>
@@ -415,7 +414,7 @@
                                         <div class="card shadow animate__animated animate__fadeInUp"  style="border-radius: 10px;">
                                             <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
                                             <div class="card-body">
-                                                <h4 class="card-title">Special title treatment</h4>
+                                                <h4 class="card-title">Tempat penitipan Alas kaki</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         
                                             </div>
@@ -425,7 +424,7 @@
                                         <div class="card shadow animate__animated animate__fadeInUp"  style="border-radius: 10px;">
                                             <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
                                             <div class="card-body">
-                                                <h4 class="card-title">Special title treatment</h4>
+                                                <h4 class="card-title">Kolam air mancur</h4></h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         
                                             </div>
