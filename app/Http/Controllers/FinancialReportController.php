@@ -182,10 +182,15 @@ class FinancialReportController extends Controller
                 } else if($currentCredit < $kredit) {
                     $currentBalance = FinancialReportModel::all()->first();
                     
-                    $resultBalance = $currentBalance->balance - $kredit;
-                    $kas->update(['credit' => $kredit, 'balance' => $resultBalance]);
+                    if($kredit > $currentBalance->balance) {
+                        $resultBalance = $currentBalance->balance - $kredit;
+                        $kas->update(['credit' => $kredit, 'balance' => $resultBalance]);
 
-                    Alert::toast('data berhasil diubah', 'success');
+                        Alert::toast('data berhasil diubah', 'success');
+                    } else {
+                        Alert::toast('kredit melebihi saldo', 'Gagal');
+                    }
+                    
                 } else {
                     Alert::error('Gagal', 'Kas keluar tidak bisa lebih dari saldo');
                 }
