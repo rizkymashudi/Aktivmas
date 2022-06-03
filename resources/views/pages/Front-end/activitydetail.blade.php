@@ -34,6 +34,9 @@
                                                     {{ $kegiatan->audience_type }}
                                                 </p>
                                             </div>
+                                            <div class="row mx-auto mx-sm-auto text-muted">
+                                                <p><i class="fa-solid fa-bullhorn mr-1"></i>{{ $kegiatan->performer }}</p>
+                                            </div>
                                             <p class="contents">
                                                 {!! substr(strip_tags($kegiatan->activity_detail), 0, 550) !!}
                                                 @if (strlen(strip_tags($kegiatan->activity_detail)) > 550)
@@ -77,6 +80,7 @@
                                                     <i class="fa-solid fa-user-group"></i>
                                                     Umum
                                                 </p>
+                                                
                                             </div>
                                             <p style="display: inline">
                                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque in officia reprehenderit 

@@ -46,11 +46,13 @@ class FinancialReportController extends Controller
         if($request->kredit === null):
             $validated = $request->validate([
                 'description'   => 'required',
-                'debet'         => 'required|integer|min:1',
+                'debet'         => 'required',
                 'date'          => 'required'
             ]);
 
-            $debet = (int)$validated['debet'];
+            $a = str_replace(",", "", $validated['debet']);
+            $b = str_replace(".00", "", $a);
+            $debet = (int)$b;
             $latestSaldo = DB::table('reports')->latest()->first();
             
 
@@ -58,9 +60,9 @@ class FinancialReportController extends Controller
                 
                 FinancialReportModel::create([
                     'description'   => $validated['description'],
-                    'debet'         => $validated['debet'],
+                    'debet'         => $debet,
                     'credit'        => 0,
-                    'balance'       => $validated['debet'],
+                    'balance'       => $debet,
                     'date'          => $validated['date']
                 ]);
                 
@@ -69,7 +71,7 @@ class FinancialReportController extends Controller
                 $balance = $latestSaldo->balance + $debet;
                 FinancialReportModel::create([
                     'description'   => $validated['description'],
-                    'debet'         => $validated['debet'],
+                    'debet'         => $debet,
                     'credit'        => 0,
                     'balance'       => $balance,
                     'date'          => $validated['date']
@@ -84,11 +86,13 @@ class FinancialReportController extends Controller
 
             $validated = $request->validate([
                 'description'   => 'required',
-                'kredit'         => 'required|integer|min:1',
+                'kredit'         => 'required',
                 'date'          => 'required'
             ]);
 
-            $kredit = (int)$validated['kredit'];
+            $a = str_replace(",", "", $validated['kredit']);
+            $b = str_replace(".00", "", $a);
+            $kredit = (int)$b;
             $latestSaldo = DB::table('reports')->latest()->first();
  
             if($latestSaldo == null || $kredit > $latestSaldo->balance):
@@ -102,7 +106,7 @@ class FinancialReportController extends Controller
                 FinancialReportModel::create([
                     'description'   => $validated['description'],
                     'debet'         => 0,
-                    'credit'        => $validated['kredit'],
+                    'credit'        => $kredit,
                     'balance'       => $balance,
                     'date'          => $validated['date']
                 ]);
@@ -151,9 +155,24 @@ class FinancialReportController extends Controller
     {
         $data = $request->all();
         $kas = FinancialReportModel::findOrFail($id);
-        $kas->update($data);
-        Alert::toast('Data berhasil diubah', 'success');
-        
+
+        if (array_key_exists("debet", $data)){
+
+            $a = str_replace(",", "", $data['debet']);
+            $b = str_replace(".00", "", $a);
+            $debet = (int)$b;
+            $kas->update(['debet' => $debet, 'balance' => $debet]);
+            Alert::toast('data berhasil diubah', 'success');
+
+        } else if (array_key_exists("kredit", $data)){
+
+            $a = str_replace(",", "", $data['kredit']);
+            $b = str_replace(".00", "", $a);
+            $kredit = (int)$b;
+            $kas->update(['credit' => $kredit, 'balance' => $kredit]);
+            Alert::toast('data berhasil diubah', 'success');
+            
+        }
         return redirect()->route('report.index');
     }
 

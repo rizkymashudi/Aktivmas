@@ -34,13 +34,13 @@
                         <label for="text-input" class="form-control-label">Debit</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="number" 
+                        <input type="text" 
                                 id="text-input" 
                                 name="debet" 
                                 placeholder="Kas masuk" 
                                 min="0.00"
                                 value="{{ old('debet') }}"
-                                class="form-control @error('debet') is-invalid @enderror">
+                                class="form-control number-separator @error('debet') is-invalid @enderror">
                         @error('debet') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
@@ -49,13 +49,13 @@
                         <label for="text-input" class="form-control-label">Kredit</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="number" 
+                        <input type="text" 
                                 id="text-input" 
                                 name="kredit" 
                                 placeholder="Kas keluar"
                                 min="0.00"
                                 value="{{ old('kredit') }}"
-                                class="form-control @error('kredit') is-invalid @enderror">
+                                class="form-control number-separator @error('kredit') is-invalid @enderror">
                         @error('kredit') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
@@ -101,4 +101,22 @@
             });
         });
     </script>
+    <script>
+        $('.number-separator').keyup(function(event) {
+        
+        // skip for arrow keys
+        if(event.which >= 37 && event.which <= 40) return;
+        
+        // format number
+        $(this).val(function(index, value){
+          return value
+          .replace(/\D/g, "")
+            .replace(/([0-9])([0-9]{2})$/, '$1.$2')  
+            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",")
+          ;
+        });
+        $(this).siblings('.field__value').val($(this).val().replace(/,/g, ''))
+        });
+        </script>
 @endpush
+
