@@ -8,13 +8,23 @@
                     <div class="card-body">
                         <div class="box-title d-sm-flex align-items-center justify-content-between">
                             <h4>Laporan keuangan Masjid Agung Batam Tahun {{ now()->year }}</h4>
-                            <a href="{{ route('report.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                                <i class="fa fa-plus fa-sm text-white-50"></i> Tambah data
-                            </a>
+                            <div class="row">
+                                <div class="col align-self-end">
+                                    <a href="{{ route('export-PDF') }}" class="btn btn-sm btn-danger shadow-sm">
+                                       Export PDF
+                                    </a>
+                                </div>
+                                <div class="col align-self-end">
+                                    <a href="{{ route('report.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                                        <i class="fa fa-plus fa-sm text-white-50"></i> Tambah data
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="card-body-- mt-4">
                             <div class="table-stats order-table ov-h">
-                                <table class="table">
+                                <table class="table table-bordered stripe order-column hover" id="table_id">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -27,7 +37,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @php
                                             $no = 1;
                                         @endphp
@@ -88,6 +97,12 @@
             </div>
         </div>
     </div>
-
-    
 @endsection
+
+@push('after-script')
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+    </script>
+@endpush
