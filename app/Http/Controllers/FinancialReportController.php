@@ -150,7 +150,7 @@ class FinancialReportController extends Controller
     {
         $data = $request->all();
         $kas = FinancialReportModel::findOrFail($id);
-        $kas->update($data);
+        $kas->update(['debet' => $data['debet'], 'balance' => $data['debet']]);
         Alert::toast('Data berhasil diubah', 'success');
         
         return redirect()->route('report.index');
