@@ -9,7 +9,7 @@
             <div class="row row__hero justify-content-center align-items-end">
                 <div class="col-sm header__text pt-5 px-5 wow animate__animated animate__zoomIn" data-wow-delay="0.1s">
                     <h1> 
-                       Website Resmi Masji Raya Batam
+                       Website Resmi Masjid Raya Batam
                     </h1>
                     <p class="my-5">
                         Jl, Engku Putri, Teluk Tering, Kec Batam Kota, Kota Batam, Kepulauan riau 29444
@@ -202,8 +202,8 @@
         <div class="container py-5">
             <div class="row row__head mx-auto mx-sm-auto align-items-center justify-content-between px-3 py-4 mt-5">
                 <h1>Jadwal Kegiatan Masjid Agung <br> Kota Batam</h1>
-                <a href="{{ Route('activities-detail') }}" class="btn btn-sm shadow-sm show__all my-5">
-                    Jadwal lainya
+                <a href="{{ Route('activities-detail') }}" class="btn btn-sm shadow-sm show__all my-5 py-2" style="font-size: 18px">
+                    Jadwal lainnya
                 </a>
             </div>
             <div class="container mt-4 mb-5 pb-5">
@@ -234,9 +234,7 @@
                                     @endif
                                 </p>
                                 <div class="text-right mt-2">
-                                    <button id="readMore" class="btn btn-sm" onclick="readMore()">
-                                        Baca lebih lanjut
-                                    </button>
+                                   
                                 </div>
                                 
                             </div>
@@ -304,7 +302,7 @@
                                     <div class="card-body body__caption mx-auto mt-3 px-2">
                                         <h5 class="judul__jadwal px-2">tidak ada kegiatan</h5>
                                         <div class="row mx-auto mx-sm-auto justify-content-between px-2 text-muted">
-                                            <p><i class="fa-solid fa-bullhorn mr-1"></i>tidak tersedia</p>
+                                            <p><i class="fa-solid fa-bullhorn mr-1"></i>test</p>
                                             <p><i class="fa-solid fa-clock mr-1"></i> - WIB</p>
                                         </div>
                                     </div>
@@ -412,7 +410,7 @@
                                     </div>
                                     <div class="col-md-4 my-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                                         <div class="card shadow animate__animated animate__fadeInUp"  style="border-radius: 10px;">
-                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                            <img class="img-fluid" alt="100%x280" src="/Front-end/images/facility/halaman.jpeg">
                                             <div class="card-body">
                                                 <h4 class="card-title">Tempat penitipan Alas kaki</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -422,10 +420,10 @@
                                     </div>
                                     <div class="col-md-4 my-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
                                         <div class="card shadow animate__animated animate__fadeInUp"  style="border-radius: 10px;">
-                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <img class="img-fluid" alt="100%x280" src="/Front-end/images/facility/masjid3.jpeg">
                                             <div class="card-body">
-                                                <h4 class="card-title">Kolam air mancur</h4></h4>
-                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                <h4 class="card-title">Kolam air mancur</h4>
+                                                <p class="card-text">Sebagai Antisipasi terhadap jamaah yang meluap, disediakan pula keran-keran air wudhu yang menjadi kesatuan dengan kolam air mancur sebagai elemen estetis dan penyejuk ruang luar. Kolam ini semata-mata penanda pada pintu utara sekaligus elemen statis.</p>
         
                                             </div>
                                         </div>
