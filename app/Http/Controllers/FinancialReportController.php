@@ -169,9 +169,30 @@ class FinancialReportController extends Controller
             $a = str_replace(",", "", $data['kredit']);
             $b = str_replace(".00", "", $a);
             $kredit = (int)$b;
-            $kas->update(['credit' => $kredit, 'balance' => $kredit]);
-            Alert::toast('data berhasil diubah', 'success');
-            
+
+            if($kas['credit'] != 0){
+                $currentCredit = $kas['credit'];
+                if($currentCredit > $kredit) {
+                    $deficitCredit = $currentCredit - $kredit;
+                    $balance = $kas['balance'] + $deficitCredit;
+                    $kas->update(['credit' => $kredit, 'balance' => $balance]);
+
+                    Alert::toast('data berhasil diubah', 'success');
+
+                } else if($currentCredit < $kredit) {
+                    $currentBalance = FinancialReportModel::all()->first();
+                    
+                    $resultBalance = $currentBalance->balance - $kredit;
+                    $kas->update(['credit' => $kredit, 'balance' => $resultBalance]);
+
+                    Alert::toast('data berhasil diubah', 'success');
+                } else {
+                    Alert::error('Gagal', 'Kas keluar tidak bisa lebih dari saldo');
+                }
+            } else {
+                $kas->update(['credit' => $kredit, 'balance' => $kredit]);
+                Alert::toast('data berhasil diubah', 'success');
+            }
         }
         return redirect()->route('report.index');
     }
